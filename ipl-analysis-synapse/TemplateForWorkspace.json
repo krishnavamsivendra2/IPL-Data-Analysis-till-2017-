@@ -119,7 +119,7 @@
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
 				"content": {
-					"query": "CREATE MASTER KEY ENCRYPTION BY PASSWORD ='<password>' \n\nCREATE DATABASE SCOPED CREDENTIAL credential_name\nWITH IDENTITY = 'identity_name'\n\nCREATE EXTERNAL DATA SOURCE gold_dest\nWITH(\n    LOCATION = 'https://iplanalysis.dfs.core.windows.net/gold',\n    CREDENTIAL = cred_vamsi\n)\n\nCREATE EXTERNAL FILE FORMAT gold_format\nWITH(\n    FORMAT_TYPE = PARQUET,\n    DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'\n);\n\n",
+					"query": "CREATE MASTER KEY ENCRYPTION BY PASSWORD ='<password>' \n\nCREATE DATABASE SCOPED CREDENTIAL credential_name\nWITH IDENTITY = 'identity_name'\n\nCREATE EXTERNAL DATA SOURCE gold_dest\nWITH(\n    LOCATION = 'https://iplanalysis.dfs.core.windows.net/gold',\n    CREDENTIAL = cred_vamsi\n)\n\nCREATE EXTERNAL FILE FORMAT gold_format\nWITH(\n    FORMAT_TYPE = PARQUET,\n    DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'\n);\n\nCREATE EXTERNAL TABLE gold_ext.top_scoring_batsmen_per_season\nWITH (\n    LOCATION = 'top_scoring_batsmen_per_season/',\n    DATA_SOURCE = gold_dest,\n    FILE_FORMAT = parquet_format\n)\nAS\nSELECT *\nFROM gold.top_scoring_batsmen_per_seasonl\n\n",
 					"metadata": {
 						"language": "sql"
 					},
@@ -159,7 +159,7 @@
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
 				"content": {
-					"query": "CREATE SCHEMA gold",
+					"query": "/*\ngold.*      -- views\ngold_ext.*  -- external tables\n\n*/\n\nCREATE SCHEMA gold;\n\nCREATE SCHEMA gold_ext;",
 					"metadata": {
 						"language": "sql"
 					},
