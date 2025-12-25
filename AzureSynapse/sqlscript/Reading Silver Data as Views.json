@@ -1,0 +1,17 @@
+{
+	"name": "Reading Silver Data as Views",
+	"properties": {
+		"content": {
+			"query": "-- create Ball By Ball view\nCREATE OR ALTER VIEW gold.ball_by_ball\nAS\n    SELECT *\n    FROM OPENROWSET(\n        BULK 'https://iplanalysis.dfs.core.windows.net/silver/IPL_Ball_By_Ball/*.parquet',\n        FORMAT = 'PARQUET'\n    ) AS query1;\n\n-- create Match view\nCREATE OR ALTER VIEW gold.match\nAS\n    SELECT *\n    FROM OPENROWSET(\n        BULK 'https://iplanalysis.dfs.core.windows.net/silver/IPL_Match/*.parquet',\n        FORMAT = 'PARQUET'\n    ) AS query1;\n\n-- create Player view\nCREATE OR ALTER VIEW gold.player\nAS\n    SELECT *\n    FROM OPENROWSET(\n        BULK 'https://iplanalysis.dfs.core.windows.net/silver/IPL_Player/*.parquet',\n        FORMAT = 'PARQUET'\n    ) AS query1;\n\n-- create Player Match view\nCREATE OR ALTER VIEW gold.player_match\nAS\n    SELECT *\n    FROM OPENROWSET(\n        BULK 'https://iplanalysis.dfs.core.windows.net/silver/IPL_Player_Match/*.parquet',\n        FORMAT = 'PARQUET'\n    ) AS query1;\n\n-- create Teams view\nCREATE OR ALTER VIEW gold.teams\nAS\n    SELECT *\n    FROM OPENROWSET(\n        BULK 'https://iplanalysis.dfs.core.windows.net/silver/IPL_Team/*.parquet',\n        FORMAT = 'PARQUET'\n    ) AS query1;\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "iplanalysis",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
