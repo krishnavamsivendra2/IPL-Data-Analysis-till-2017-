@@ -1,0 +1,27 @@
+[
+    {
+        "p_rel_url" : "krishnavamsivendra2/IPL-Data-Analysis-till-2017/main/Initial%20Data/Ball_By_Ball.csv",
+        "p_sink_folder_name" : "IPL_Ball_By_Ball",
+        "p_sink_file_name" : "IPL_Ball_By_Ball.csv"
+    },
+    {
+        "p_rel_url" : "krishnavamsivendra2/IPL-Data-Analysis-till-2017/main/Initial%20Data/Match.csv",
+        "p_sink_folder_name" : "IPL_Match",
+        "p_sink_file_name" : "IPL_Match.csv"
+    },
+    {
+        "p_rel_url" : "krishnavamsivendra2/IPL-Data-Analysis-till-2017/main/Initial%20Data/Player.csv",
+        "p_sink_folder_name" : "IPL_Player",
+        "p_sink_file_name" : "IPL_Player.csv"
+    },
+    {
+        "p_rel_url" : "krishnavamsivendra2/IPL-Data-Analysis-till-2017/main/Initial%20Data/Player_match.csv",
+        "p_sink_folder_name" : "IPL_Player_Match",
+        "p_sink_file_name" : "IPL_Player_Match.csv"
+    },
+    {
+        "p_rel_url" : "krishnavamsivendra2/IPL-Data-Analysis-till-2017/main/Initial%20Data/Team.csv",
+        "p_sink_folder_name" : "IPL_Team",
+        "p_sink_file_name" : "IPL_Team.csv"
+    }
+]
