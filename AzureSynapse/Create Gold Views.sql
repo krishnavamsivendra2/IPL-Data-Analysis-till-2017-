@@ -31,7 +31,7 @@ CREATE OR ALTER VIEW gold.economic_bowler AS
 SELECT
     p.country_name,
     p.player_name,
-    AVG(b.runs_scored) AS avg_runs_per_ball,
+    AVG(CAST(b.runs_scored AS DECIMAL(6,3))) AS avg_runs_per_ball,
     SUM(CASE WHEN b.bowler_wicket = 1 THEN 1 ELSE 0 END) AS total_wickets
 FROM gold.ball_by_ball b
 JOIN gold.player_match pm
@@ -79,12 +79,17 @@ SELECT
     toss_winner AS team_name,
     season_year,
     CAST(
-        100.0 * COUNT(CASE WHEN toss_winner = match_winner THEN 1 END)
+        100.0 *
+        SUM(CASE WHEN toss_winner = match_winner THEN 1 ELSE 0 END)
         / COUNT(*)
         AS DECIMAL(6,2)
     ) AS win_percentage
 FROM gold.match
-WHERE toss_winner IS NOT NULL
+WHERE
+    toss_winner IS NOT NULL
+    AND toss_winner <> ''
+    AND match_winner IS NOT NULL
+    AND match_winner <> ''
 GROUP BY
     toss_winner,
     season_year;
@@ -101,7 +106,10 @@ ORDER BY
 CREATE OR ALTER VIEW gold.avrg_runs_per_ball_by_player_in_won_matches AS
 SELECT
     p.player_name,
-    AVG(b.runs_scored) AS avg_runs_in_wins,
+    CAST(
+        AVG(CAST(b.runs_scored AS DECIMAL(10,3)))
+        AS DECIMAL(10,3)
+    ) AS avg_runs_in_wins,
     COUNT(*) AS balls_faced
 FROM gold.ball_by_ball b
 JOIN gold.player_match pm
@@ -191,4 +199,3 @@ FROM gold.season_wise_match_wins
 ORDER BY
     season_year,
     wins_after_toss DESC;
-
